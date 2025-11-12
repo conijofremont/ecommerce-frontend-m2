@@ -1,33 +1,17 @@
-// Array de productos ficticios (objetos)
+// Array de 12 productos tangibles ficticios (grilla más completa)
 const productos = [
-    {
-        id: 1,
-        nombre: 'Camiseta Cómoda',
-        precio: 15999,
-        descripcion: 'Camiseta de algodón suave, perfecta para el día a día.',
-        imagen: 'https://picsum.photos/300/300?random=1' // Placeholder alternativo
-    },
-    {
-        id: 2,
-        nombre: 'Jeans Ajustados',
-        precio: 25999,
-        descripcion: 'Pantalón denim elástico con corte moderno.',
-        imagen: 'https://picsum.photos/300/300?random=2'
-    },
-    {
-        id: 3,
-        nombre: 'Sneakers Deportivas',
-        precio: 45999,
-        descripcion: 'Zapatillas cómodas para correr o caminar.',
-        imagen: 'https://picsum.photos/300/300?random=3'
-    },
-    {
-        id: 4,
-        nombre: 'Gorra Urbana',
-        precio: 8999,
-        descripcion: 'Gorra ajustable con diseño streetwear.',
-        imagen: 'https://picsum.photos/300/300?random=4'
-    }
+    { id: 1, nombre: 'Polera Algodón', precio: 15999, descripcion: 'Polera de Algodón Peruano, mangas cortas', imagen: 'images/producto1.jpg' },
+    { id: 2, nombre: 'Jeans Ajustados', precio: 25999, descripcion: 'Pantalón denim elástico con corte moderno.', imagen: 'images/producto2.jpg' },
+    { id: 3, nombre: 'Zapatillas Deportivas', precio: 45999, descripcion: 'Zapatillas cómodas para correr o caminar.', imagen: 'images/producto3.jpg' },
+    { id: 4, nombre: 'Gorra Urbana', precio: 8999, descripcion: 'Gorra ajustable con diseño streetwear.', imagen: 'images/producto4.jpg' },
+    { id: 5, nombre: 'Reloj Clásico', precio: 89999, descripcion: 'Reloj de pulsera con mecanismo suizo de alta precisión.', imagen: 'images/producto5.jpg' },
+    { id: 6, nombre: 'Bolso de Mano', precio: 34999, descripcion: 'Bolso elegante para uso diario, con compartimentos múltiples.', imagen: 'images/producto6.jpg' },
+    { id: 7, nombre: 'Auriculares Wireless', precio: 59999, descripcion: 'Auriculares con cancelación de ruido y batería de 20h.', imagen: 'images/producto7.jpg' },
+    { id: 8, nombre: 'Mochila Viajera', precio: 49999, descripcion: 'Mochila resistente al agua con espacio para laptop.', imagen: 'images/producto8.jpg' },
+    { id: 9, nombre: 'Poleron Oversize', precio: 28999, descripcion: 'Sudadera cómoda con capucha y estampado urbano.', imagen: 'images/producto9.jpg' },
+    { id: 10, nombre: 'Billetera de Cuero', precio: 19999, descripcion: 'Cartera minimalista con ranuras para tarjetas.', imagen: 'images/producto10.jpg' },
+    { id: 11, nombre: 'Zapatillas Casual', precio: 39999, descripcion: 'Zapatillas versátiles para ciudad y ocio.', imagen: 'images/producto11.jpg' },
+    { id: 12, nombre: 'Bufanda de Lana', precio: 12999, descripcion: 'Bufanda suave y abrigada para invierno.', imagen: 'images/producto12.jpg' }
 ];
 
 // Función para generar cards en Home (con check para null)
