@@ -42,7 +42,7 @@ function generarGrilla() {
         const card = `
             <article class="col-lg-3 col-md-6 mb-4">
                 <div class="card h-100">
-                    <img src="$$ {producto.imagen}" class="card-img-top" alt=" $${producto.nombre}" style="height: 200px; object-fit: cover;">
+                    <img src="${producto.imagen}" class="card-img-top" alt="${producto.nombre}" style="height: 200px; object-fit: cover;">
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title">${producto.nombre}</h5>
                         <p class="card-text flex-grow-1">$${producto.precio.toLocaleString()}</p>
@@ -92,6 +92,56 @@ function actualizarContador() {
     }
 }
 
+// Función para mostrar lista del carrito
+function mostrarCarrito() {
+    const carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
+    const lista = document.getElementById('lista-items');
+    const totalSpan = document.getElementById('contador-total');
+    if (!lista) return; // Check null
+
+    if (carrito.length === 0) {
+        lista.innerHTML = '<li class="list-group-item text-center">Tu carrito está vacío. ¡Agrega productos desde Home!</li>';
+        if (totalSpan) totalSpan.textContent = 0;
+        return;
+    }
+
+    lista.innerHTML = '';
+    let total = 0;
+    carrito.forEach(id => {
+        const producto = productos.find(p => p.id === id);
+        if (producto) {
+            const item = document.createElement('li');
+            item.className = 'list-group-item d-flex justify-content-between align-items-center';
+            item.innerHTML = `
+                <div>
+                    <h6>${producto.nombre}</h6>
+                    <p class="mb-0">$${producto.precio.toLocaleString()}</p>
+                </div>
+                <button class="btn btn-sm btn-outline-danger" onclick="removerDelCarrito(${id})">Remover</button>
+            `;
+            lista.appendChild(item);
+            total++;
+        }
+    });
+    if (totalSpan) totalSpan.textContent = total;
+}
+
+// Función para remover del carrito
+function removerDelCarrito(id) {
+    let carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
+    carrito = carrito.filter(itemId => itemId !== id);
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+    actualizarContador();
+    mostrarCarrito(); // Refresca la lista
+}
+
+// Función para vaciar carrito
+function vaciarCarrito() {
+    localStorage.removeItem('carrito');
+    actualizarContador();
+    mostrarCarrito();
+}
+
 // Llama todo al cargar (mejor timing con window.onload para evitar null)
 window.addEventListener('load', function() {
     actualizarContador();
@@ -103,6 +153,13 @@ window.addEventListener('load', function() {
         const agregarBtn = document.getElementById('agregar-btn');
         if (agregarBtn) {
             agregarBtn.addEventListener('click', agregarAlCarrito);
+        }
+    }
+    if (window.location.pathname.includes('cart.html')) {
+        mostrarCarrito();
+        const vaciarBtn = document.getElementById('vaciar-btn');
+        if (vaciarBtn) {
+            vaciarBtn.addEventListener('click', vaciarCarrito);
         }
     }
 });
