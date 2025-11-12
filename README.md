@@ -32,6 +32,6 @@ Proyecto MVP de una tienda en línea ficticia con frontend responsive. Usa HTML5
 - Imágenes: Placeholders de Picsum (Reemplazare una vez que termine todo el esquema con las imagenes originales que estaran en la carpeta `js/script.js`).
 - Pruebas: Responsive en DevTools (F12 o Ctrl+Shift+I).
 
-Enlace al repositorio público: [https://github.com/tuusuario/ecommerce-frontend-m2](https://github.com/tuusuario/ecommerce-frontend-m2) (actualizare con el mio real al subir).
+Enlace al repositorio público: [https://github.com/conijofremont/ecommerce-frontend-m2](https://github.com/tuusuario/ecommerce-frontend-m2) (actualizare con el mio real al subir).
 
 ¡Gracias por revisar! 😊
