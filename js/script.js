@@ -5,40 +5,44 @@ const productos = [
         nombre: 'Camiseta Cómoda',
         precio: 15999,
         descripcion: 'Camiseta de algodón suave, perfecta para el día a día.',
-        imagen: 'https://via.placeholder.com/300x300/007bff/ffffff?text=Camiseta'
+        imagen: 'https://picsum.photos/300/300?random=1' // Placeholder alternativo
     },
     {
         id: 2,
         nombre: 'Jeans Ajustados',
         precio: 25999,
         descripcion: 'Pantalón denim elástico con corte moderno.',
-        imagen: 'https://via.placeholder.com/300x300/28a745/ffffff?text=Jeans'
+        imagen: 'https://picsum.photos/300/300?random=2'
     },
     {
         id: 3,
         nombre: 'Sneakers Deportivas',
         precio: 45999,
         descripcion: 'Zapatillas cómodas para correr o caminar.',
-        imagen: 'https://via.placeholder.com/300x300/dc3545/ffffff?text=Sneakers'
+        imagen: 'https://picsum.photos/300/300?random=3'
     },
     {
         id: 4,
         nombre: 'Gorra Urbana',
         precio: 8999,
         descripcion: 'Gorra ajustable con diseño streetwear.',
-        imagen: 'https://via.placeholder.com/300x300/ffc107/000000?text=Gorra'
+        imagen: 'https://picsum.photos/300/300?random=4'
     }
 ];
 
-// Función para generar cards en Home (usa DOM y querySelector)
+// Función para generar cards en Home (con check para null)
 function generarGrilla() {
     const grilla = document.getElementById('grilla-productos');
+    if (!grilla) {
+        console.error('Error: No se encontró #grilla-productos en el HTML');
+        return; // Sale si no existe
+    }
     grilla.innerHTML = ''; // Limpia
     productos.forEach(producto => {
         const card = `
-            <article class="col-lg-3 col-md-6 mb-4"> <!-- Responsive: 4 col desktop, 2 tablet, 1 móvil -->
+            <article class="col-lg-3 col-md-6 mb-4">
                 <div class="card h-100">
-                    <img src="${producto.imagen}" class="card-img-top" alt="${producto.nombre}" style="height: 200px; object-fit: cover;">
+                    <img src="$$ {producto.imagen}" class="card-img-top" alt=" $${producto.nombre}" style="height: 200px; object-fit: cover;">
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title">${producto.nombre}</h5>
                         <p class="card-text flex-grow-1">$${producto.precio.toLocaleString()}</p>
@@ -51,5 +55,54 @@ function generarGrilla() {
     });
 }
 
-// Llama al cargar la página
-document.addEventListener('DOMContentLoaded', generarGrilla);
+// Función para mostrar detalle de producto (corrigió 'preco' a 'precio')
+function mostrarDetalle() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = parseInt(urlParams.get('id'));
+    const producto = productos.find(p => p.id === id);
+    const contenedor = document.getElementById('detalle-producto');
+    if (!producto || !contenedor) {
+        contenedor.innerHTML = '<p class="text-center">Producto no encontrado.</p>';
+        return;
+    }
+    document.getElementById('img-producto').src = producto.imagen;
+    document.getElementById('img-producto').alt = producto.nombre;
+    document.getElementById('nombre-producto').textContent = producto.nombre;
+    document.getElementById('precio-producto').textContent = `$${producto.precio.toLocaleString()}`;
+    document.getElementById('descripcion-producto').textContent = producto.descripcion;
+}
+
+// Función para agregar al carrito
+function agregarAlCarrito() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = parseInt(urlParams.get('id'));
+    let carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
+    carrito.push(id);
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+    actualizarContador();
+    alert('¡Producto agregado al carrito!');
+}
+
+// Función para actualizar contador
+function actualizarContador() {
+    const carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
+    const contador = document.getElementById('contador-carrito');
+    if (contador) {
+        contador.textContent = carrito.length;
+    }
+}
+
+// Llama todo al cargar (mejor timing con window.onload para evitar null)
+window.addEventListener('load', function() {
+    actualizarContador();
+    if (window.location.pathname.includes('index.html') || window.location.pathname === '/') {
+        generarGrilla();
+    }
+    if (window.location.pathname.includes('detail.html')) {
+        mostrarDetalle();
+        const agregarBtn = document.getElementById('agregar-btn');
+        if (agregarBtn) {
+            agregarBtn.addEventListener('click', agregarAlCarrito);
+        }
+    }
+});
