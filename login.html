@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RUAJ Hanot - Detalle</title>
+    <title>RUAJ Hanot - Iniciar Sesión</title>
     <!-- Bootstrap CSS CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
@@ -11,7 +11,7 @@
 </head>
 <!-- Bootstrap Icons CDN -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-<body>
+<body class="bg-light">
     <!-- Header con Navbar -->
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
@@ -40,48 +40,37 @@
         </nav>
     </header>
 
-    <!-- Main con Detalle de Producto -->
+    <!-- Main con Form de Login -->
     <main class="container mt-5 pt-5" role="main">
-        <article id="detalle-producto" class="row justify-content-center">
-            <div class="col-lg-8">
-                <a href="index.html" class="btn btn-secondary mb-3" aria-label="Volver a la página de inicio">← Volver al Home</a>
-                <div class="card">
-                    <div class="row g-0">
-                        <div class="col-md-4">
-                            <img id="img-producto" src="" class="img-fluid rounded-start" alt="" style="height: 300px; object-fit: cover;" loading="lazy">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h1 id="nombre-producto" class="card-title"></h1>
-                                <h2 id="precio-producto" class="text-success"></h2>
-                                <p id="descripcion-producto" class="card-text"></p>
-                                <!-- Sección de tallas (solo para ropa) -->
-                                <div id="talla-section" class="mt-3" style="display: none;">
-                                    <label for="talla-select" class="form-label">Talla (obligatoria para ropa):</label>
-                                    <select id="talla-select" class="form-select w-50">
-                                        <option value="">Selecciona talla</option>
-                                        <option value="S">S</option>
-                                        <option value="M">M</option>
-                                        <option value="L">L</option>
-                                        <option value="XL">XL</option>
-                                    </select>
-                                </div>
-                                <!-- Input de cantidad (siempre visible) -->
-                                <div class="mt-3">
-                                    <label for="cantidad-input" class="form-label">Cantidad:</label>
-                                    <input type="number" id="cantidad-input" class="form-control w-25" min="1" max="10" value="1">
-                                </div>
-                                <button id="agregar-btn" class="btn btn-success btn-lg mt-3">Agregar al Carrito</button>
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-4">
+                <div class="card shadow">
+                    <div class="card-body p-4">
+                        <h2 class="text-center mb-4">Iniciar Sesión</h2>
+                        <form id="loginForm">
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" placeholder="tu@email.com" required>
                             </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Contraseña</label>
+                                <input type="password" class="form-control" id="password" placeholder="Tu contraseña" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100 mb-3">Iniciar Sesión</button>
+                        </form>
+                        <div class="text-center">
+                            <a href="#" class="text-muted">¿Olvidaste tu contraseña?</a>
                         </div>
+                        <hr>
+                        <p class="text-center mb-0">¿No tienes cuenta? <a href="register.html">Regístrate aquí</a></p>
                     </div>
                 </div>
             </div>
-        </article>
+        </div>
     </main>
 
     <!-- Footer -->
-   <footer class="bg-dark text-white text-center py-4 mt-5">
+    <footer class="bg-dark text-white text-center py-4 mt-5">
     <div class="container">
         <div class="row">
             <div class="col-12 mb-3">
@@ -112,7 +101,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Custom JS -->
     <script src="js/script.js"></script>
-      <!-- Asistente Virtual (HTML) -->
+    <!-- Asistente Virtual (HTML) -->
 <div id="chatbot" class="chatbot-closed">
     <div class="chatbot-header" onclick="toggleChatbot()">
         <i class="bi bi-chat-dots-fill"></i>
@@ -198,98 +187,5 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Tu JS principal -->
 <script src="js/script.js"></script>
-</body>
-
-<!-- Botón flotante -->
-<button id="chatbot-toggle" class="chatbot-toggle" onclick="toggleChatbot()" aria-label="Abrir asistente virtual">
-    <i class="bi bi-chat-dots-fill"></i>
-</button>
-<!-- Asistente Virtual (HTML) -->
-<div id="chatbot" class="chatbot-closed">
-    <div class="chatbot-header" onclick="toggleChatbot()">
-        <i class="bi bi-chat-dots-fill"></i>
-        <span>¿Necesitas ayuda?</span>
-        <i class="bi bi-x-lg close-icon"></i>
-    </div>
-    <div class="chatbot-body">
-        <div class="chatbot-messages" id="chat-messages">
-            <div class="message bot">¡Hola! Soy Pascuala, tú asistente en RUAJ Hanot</div>
-            <div class="message bot">¿En qué te ayudo hoy?</div>
-        </div>
-        <div class="chatbot-options">
-            <button class="btn btn-sm btn-outline-primary w-100 mb-2" onclick="sendMessage('Ver productos')">Ver productos</button>
-            <button class="btn btn-sm btn-outline-primary w-100 mb-2" onclick="sendMessage('Métodos de pago')">Métodos de pago</button>
-            <button class="btn btn-sm btn-outline-primary w-100 mb-2" onclick="sendMessage('Tiempos de envío')">Tiempos de envío</button>
-            <button class="btn btn-sm btn-outline-primary w-100" onclick="sendMessage('Contactar soporte')">Contactar soporte</button>
-        </div>
-    </div>
-</div>
-
-<!-- Botón flotante -->
-<button id="chatbot-toggle" class="chatbot-toggle" onclick="toggleChatbot()" aria-label="Abrir asistente virtual">
-    <i class="bi bi-chat-dots-fill"></i>
-</button>
-
-<!-- JS DEL CHATBOT (INLINE - SIEMPRE FUNCIONA) -->
-<script>
-    function toggleChatbot() {
-        const chatbot = document.getElementById('chatbot');
-        const toggle = document.getElementById('chatbot-toggle');
-        if (chatbot && toggle) {
-            chatbot.classList.toggle('chatbot-closed');
-            toggle.style.display = chatbot.classList.contains('chatbot-closed') ? 'block' : 'none';
-        }
-    }
-
-    function sendMessage(text) {
-        const messages = document.getElementById('chat-messages');
-        if (!messages) return;
-
-        const userMsg = document.createElement('div');
-        userMsg.className = 'message user';
-        userMsg.textContent = text;
-        messages.appendChild(userMsg);
-
-        setTimeout(() => {
-            const botMsg = document.createElement('div');
-            botMsg.className = 'message bot';
-            let response = '';
-            if (text.toLowerCase().includes('producto')) {
-                response = 'Explora todos nuestros productos en <a href="index.html" style="color: var(--celeste-intenso); font-weight: bold;">Home</a>';
-            } else if (text.toLowerCase().includes('pago')) {
-                response = 'Aceptamos tarjeta, transferencia y efectivo contra entrega.';
-            } else if (text.toLowerCase().includes('envío') || text.toLowerCase().includes('despacho')) {
-                response = 'Envíos a todo Chile: $5.000 (despacho) o retiro gratis en tienda.';
-            } else {
-                response = 'Escríbenos a <strong>tienda@ruajhanot.cl</strong> o al <strong>+56 9 4017 7278</strong>';
-            }
-            botMsg.innerHTML = response;
-            messages.appendChild(botMsg);
-            messages.scrollTop = messages.scrollHeight;
-        }, 800);
-    }
-
-    document.addEventListener('click', function(e) {
-        const chatbot = document.getElementById('chatbot');
-        const toggle = document.getElementById('chatbot-toggle');
-        if (chatbot && toggle && 
-            !chatbot.contains(e.target) && 
-            !toggle.contains(e.target) && 
-            !chatbot.classList.contains('chatbot-closed')) {
-            toggleChatbot();
-        }
-    });
-
-    document.addEventListener('DOMContentLoaded', function() {
-        const toggle = document.getElementById('chatbot-toggle');
-        if (toggle) toggle.style.display = 'block';
-    });
-</script>
-
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Tu JS principal -->
-<script src="js/script.js"></script>
-</body>
 </body>
 </html>
