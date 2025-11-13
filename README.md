@@ -62,3 +62,4 @@ https://conijofremont.github.io/ecommerce-frontend-m2/
 ¡Gracias por revisar!
 Constanza Jofre Montecinos 
 Bootcamp Talento Digital – Módulo 2
+
